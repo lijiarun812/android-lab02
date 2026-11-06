@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 // 教师参考标识；学生须修改三个常量，验收码由教师当堂公布。
 private const val INSPECTOR_NAME = "李佳润"
 private const val STUDENT_SUFFIX = "202530224094"
-private const val CHECK_CODE = "12345"
+private const val CHECK_CODE = "123456"
 
 @Composable
 fun InspectionHome(onEnter: () -> Unit) {
