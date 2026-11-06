@@ -39,8 +39,13 @@ class InspectionController(private val scope: CoroutineScope) {
         job = scope.launch {
             try {
                 val tasks = loadInspectionTasks(room, scenario, requestKey)
-                // TODO 2：根据tasks是否为空设置EMPTY或SUCCESS，并将tasks放入state。
-                state = InspectionUiState(message = "TODO 2：请完成请求成功后的状态更新")
+// TODO 2：根据tasks是否为空设置EMPTY或SUCCESS，并将tasks放入state。
+                if (tasks.isEmpty()) {
+                    state = InspectionUiState(LoadPhase.EMPTY, tasks = tasks)
+                } else {
+                    state = InspectionUiState(LoadPhase.SUCCESS, tasks = tasks)
+                }
+                Log.i("InspectionLab", "APPLY_RESULT $room ${tasks.size}")
                 Log.i("InspectionLab", "APPLY_RESULT $room ${tasks.size}")
             } catch (e: CancellationException) {
                 Log.i("InspectionLab", "REQUEST_CANCELLED $room")
